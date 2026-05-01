@@ -33,3 +33,7 @@ video backgrounds that change with each timer session.
 - Glass morphism UI design
 - Smooth CSS animations
 - Responsive layout
+
+## note
+
+> 🚧 This project is still in progress...
