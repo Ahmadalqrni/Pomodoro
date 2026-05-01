@@ -1,0 +1,36 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg" style="">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Study With Me circular logo</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">A circular logo with glowing white text reading Study With Me stacked in the center, transparent background</desc>
+
+  
+
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  <mask id="imagine-text-gaps-fjlxgw" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="680" height="680" fill="white"/><rect x="156.6328125" y="229.4375" width="366.734375" height="86" fill="black" rx="2"/><rect x="214.9140625" y="317.53125" width="248.171875" height="72" fill="black" rx="2"/><rect x="245.1875" y="381.4375" width="189.625" height="86" fill="black" rx="2"/></mask></defs>
+
+  <!-- Outer decorative ring -->
+  <circle cx="340" cy="340" r="295" stroke-width="1.5" opacity="0.4" style="fill:none;stroke:rgb(250, 249, 245);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.92039;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Inner decorative ring -->
+  <circle cx="340" cy="340" r="270" stroke-width="2.5" style="fill:none;stroke:rgb(250, 249, 245);color:rgb(255, 255, 255);stroke-width:2.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.92039;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Stacked text: STUDY / WITH / ME -->
+  <text x="340" y="280" font-size="72px" letter-spacing="18" style="fill:rgb(250, 249, 245);stroke:rgb(250, 249, 245);color:rgb(255, 255, 255);stroke-width:4px;stroke-linecap:butt;stroke-linejoin:round;opacity:0.92039;font-family:Georgia, serif;font-size:72px;font-weight:700;text-anchor:middle;dominant-baseline:middle">STUDY</text>
+  <text x="340" y="360" font-size="60px" letter-spacing="12" style="fill:rgb(250, 249, 245);stroke:rgb(250, 249, 245);color:rgb(255, 255, 255);stroke-width:4px;stroke-linecap:butt;stroke-linejoin:round;opacity:0.92039;font-family:Georgia, serif;font-size:60px;font-weight:700;text-anchor:middle;dominant-baseline:middle">WITH</text>
+  <text x="340" y="432" font-size="72px" letter-spacing="28" style="fill:rgb(250, 249, 245);stroke:rgb(250, 249, 245);color:rgb(255, 255, 255);stroke-width:4px;stroke-linecap:butt;stroke-linejoin:round;opacity:0.92039;font-family:Georgia, serif;font-size:72px;font-weight:700;text-anchor:middle;dominant-baseline:middle">ME</text>
+
+  <!-- Top decorative dots -->
+  <circle cx="340" cy="72" r="4" fill="var(--color-text-primary)" filter="url(#glow)" opacity="0.8" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.8;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="325" cy="74" r="2.5" fill="var(--color-text-primary)" filter="url(#glow)" opacity="0.5" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="355" cy="74" r="2.5" fill="var(--color-text-primary)" filter="url(#glow)" opacity="0.5" style="fill:rgb(250, 249, 245);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Bottom decorative line -->
+  <line x1="270" y1="465" x2="410" y2="465" stroke="var(--color-text-primary)" stroke-width="1" filter="url(#glow)" opacity="0.6" mask="url(#imagine-text-gaps-fjlxgw)" style="fill:rgb(0, 0, 0);stroke:rgb(250, 249, 245);color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+</svg>
