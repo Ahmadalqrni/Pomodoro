@@ -18,7 +18,13 @@ AddTask.addEventListener("click", () => {
   checkbox = document.createElement("input");
   checkbox.type = "checkbox";
 
+  deletebtn = document.createElement("delete");
+  deletebtn.addEventListener('click',()=> {
+    li.remove()
+  })
+ const span = document.createElement("span");
+span.textContent = userinput.value;
   li.appendChild(checkbox);
-  li.textContent = userinput.value;
+  li.appendChild(span);
   Tasklist.appendChild(li);
 });
