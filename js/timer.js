@@ -9,7 +9,7 @@ const sessionShort = document.getElementById("sessionshort");
 const sessionlong = document.getElementById("sessionlong");
 
 let count = 0;
-let timeLeft = 3;
+let timeLeft = 1500;
 let timeRunning = false;
 let timer = null;
 let session = "focus";
@@ -72,20 +72,20 @@ pausebtn.addEventListener("click", () => {
 function switchSession(session, autoStart = true) {
   const sessions = {
     focus: {
-      time: 3,
-      title: "Focus Time 🍅",
+      time: 1500,
+      title: "🍅 Focus Time 🍅",
       timedisplay: "25:00",
       video: "vid/focus.mp4",
     },
     short: {
-      time: 3,
-      title: "Break Time ☕",
+      time: 300,
+      title: "☕ Break Time ☕",
       timedisplay: "5:00",
       video: "vid/break.mp4",
     },
     long: {
-      time: 5,
-      title: "Long Break 😴",
+      time: 900,
+      title: "😴 Long Break 😴",
       timedisplay: "15:00",
       video: "vid/longbreak.mp4",
     },

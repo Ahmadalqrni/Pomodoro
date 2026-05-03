@@ -26,15 +26,15 @@ header {
 header img {
   width: 120px;
 }
-ul {
+header ul {
   margin-top: 50px;
   display: flex;
-  gap: 50px;
+  gap: 80px;
   list-style: none;
   font-size: 20px;
   text-align: center;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 150px;
 }
 /* -----------------ul anmtion --------------------*/
 nav a {
@@ -52,7 +52,8 @@ nav a::after {
   left: 50%;
   width: 0;
   height: 2px;
-  background: white;
+  background: rgba(255, 115, 0, 0.8);
+  text-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
   transition: 0.6s;
 }
 
@@ -64,7 +65,7 @@ nav a:hover::after {
 
 nav a:hover {
   transform: scale(1.2);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
 }
 /*-------------------------------------------------------------------*/
 
