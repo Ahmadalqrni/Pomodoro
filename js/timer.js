@@ -1,13 +1,12 @@
 const timerdisplay = document.getElementById("timerdisplay");
 const startbtn = document.getElementById("startbtn");
 const resetbtn = document.getElementById("resetbtn");
-const pausebtn = document.getElementById("pausebtn")
+const pausebtn = document.getElementById("pausebtn");
 const titlesession = document.getElementById("titlesession");
 const starcount = document.getElementById("starcount");
 const sessionfocus = document.getElementById("sessionfocus");
 const sessionShort = document.getElementById("sessionshort");
 const sessionlong = document.getElementById("sessionlong");
-
 
 let count = 0;
 let timeLeft = 3;
@@ -66,9 +65,9 @@ resetbtn.addEventListener("click", () => {
 // pause button
 
 pausebtn.addEventListener("click", () => {
-  clearInterval(timer)
-  timeRunning = false
-})
+  clearInterval(timer);
+  timeRunning = false;
+});
 
 function switchSession(session, autoStart = true) {
   const sessions = {
@@ -101,6 +100,10 @@ function switchSession(session, autoStart = true) {
     bgvideo.src = sessions[session].video;
     bgvideo.style.opacity = 1;
   }, 500);
+  document.querySelectorAll("#sesstion button").forEach((btn) => {
+    btn.classList.remove("active");
+  });
+  document.getElementById("session" + session).classList.add("active");
   if (autoStart) {
     startbtn.click();
   }
