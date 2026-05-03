@@ -1,14 +1,16 @@
 const timerdisplay = document.getElementById("timerdisplay");
 const startbtn = document.getElementById("startbtn");
 const resetbtn = document.getElementById("resetbtn");
+const pausebtn = document.getElementById("pausebtn")
 const titlesession = document.getElementById("titlesession");
 const starcount = document.getElementById("starcount");
 const sessionfocus = document.getElementById("sessionfocus");
 const sessionShort = document.getElementById("sessionshort");
 const sessionlong = document.getElementById("sessionlong");
 
+
 let count = 0;
-let timeLeft = 1500;
+let timeLeft = 3;
 let timeRunning = false;
 let timer = null;
 let session = "focus";
@@ -27,7 +29,7 @@ startbtn.addEventListener("click", () => {
         if (count === 4) {
           session = "long";
           count = 0;
-          starcount.textContent = "⭐";
+          starcount.textContent = "";
         } else {
           session = "short";
           playSound();
@@ -61,22 +63,29 @@ resetbtn.addEventListener("click", () => {
   sessionfocus.classList.add("active");
 });
 //----
+// pause button
+
+pausebtn.addEventListener("click", () => {
+  clearInterval(timer)
+  timeRunning = false
+})
+
 function switchSession(session, autoStart = true) {
   const sessions = {
     focus: {
-      time: 1500,
+      time: 3,
       title: "Focus Time 🍅",
       timedisplay: "25:00",
       video: "vid/focus.mp4",
     },
     short: {
-      time: 300,
+      time: 3,
       title: "Break Time ☕",
       timedisplay: "5:00",
       video: "vid/break.mp4",
     },
     long: {
-      time: 900,
+      time: 5,
       title: "Long Break 😴",
       timedisplay: "15:00",
       video: "vid/longbreak.mp4",
