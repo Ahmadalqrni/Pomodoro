@@ -7,6 +7,7 @@ const starcount = document.getElementById("starcount");
 const sessionfocus = document.getElementById("sessionfocus");
 const sessionShort = document.getElementById("sessionshort");
 const sessionlong = document.getElementById("sessionlong");
+const ToDoList = document.getElementById("ToDoList");
 
 let count = 0;
 let timeLeft = 1500;
@@ -141,3 +142,35 @@ document.querySelectorAll("#sesstion button").forEach((button) => {
     switchSession(session, false);
   });
 });
+
+// do list task savestorage
+function loadTasks() {
+  const do_list = localStorage.getItem("tasks");
+  if (!do_list) return;
+  let tasks = JSON.parse(do_list);
+
+  tasks.forEach((task) => {
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+
+    span.textContent = task.text;
+
+    if (task.checked) {
+      span.style.textDecoration = "line-through";
+    }
+
+    span.addEventListener("click", () => {
+      task.checked = !task.checked;
+      span.style.textDecoration = task.checked ? "line-through" : "none";
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    });
+
+    li.appendChild(span);
+    ToDoList.appendChild(li);
+  });
+}
+window.addEventListener("storage", () => {
+  ToDoList.innerHTML = "";
+  loadTasks();
+});
+loadTasks();

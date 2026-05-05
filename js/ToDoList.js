@@ -47,6 +47,7 @@ AddTask.addEventListener("click", () => {
   userinput.value = "";
 });
 
+// do list task save storage
 function loadTasks() {
   const saved = localStorage.getItem("tasks");
   if (!saved) return;
@@ -88,3 +89,8 @@ function loadTasks() {
 }
 
 loadTasks();
+
+window.addEventListener("storage", () => {
+  ToDoList.innerHTML = "";
+  loadTasks();
+});

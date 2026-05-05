@@ -137,3 +137,7 @@ h2 {
   margin-right: 40px;
   gap: 20px;
 }
+
+#ToDoList {
+  flex-direction: column;
+}
