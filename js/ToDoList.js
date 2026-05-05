@@ -29,11 +29,10 @@ AddTask.addEventListener("click", () => {
   checkbox.type = "checkbox";
 
   checkbox.addEventListener("change", () => {
-    if (checkbox.checked) {
-      span.style.textDecoration = "line-through";
-    } else {
-      span.style.textDecoration = "none";
-    }
+    task.checked = checkbox.checked;
+    span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+    li.classList.toggle("checked");
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   });
   // span
   span.textContent = userinput.value;
@@ -69,9 +68,10 @@ function loadTasks() {
       span.style.textDecoration = "line-through";
     }
 
-    checkbox.addEventListener("change", () => {
-      task.checked = checkbox.checked;
-      span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+    li.addEventListener("click", () => {
+      task.checked = !task.checked;
+      span.style.textDecoration = task.checked ? "line-through" : "none";
+      li.classList.toggle("checked");
       localStorage.setItem("tasks", JSON.stringify(tasks));
     });
 
@@ -80,6 +80,10 @@ function loadTasks() {
       tasks = tasks.filter((t) => t !== task);
       localStorage.setItem("tasks", JSON.stringify(tasks));
     });
+    if (task.checked) {
+      span.style.textDecoration = "line-through";
+      li.classList.add("checked");
+    }
 
     li.appendChild(checkbox);
     li.appendChild(span);

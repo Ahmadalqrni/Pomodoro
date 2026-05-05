@@ -2,7 +2,9 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   background-color: #0f0f0f;
+  color: whitesmoke;
 }
+
 video {
   position: fixed;
   top: 0;
@@ -13,6 +15,7 @@ video {
   z-index: -1;
   transition: opacity 0.5s;
 }
+
 header {
   background-color: rgba(255, 145, 0, 0.034);
   backdrop-filter: blur(10px);
@@ -68,76 +71,159 @@ nav a:hover {
   transform: scale(1.2);
   text-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
 }
-
+/* ---- timer box ---- */
 #timerbox {
-  background-color: rgba(167, 94, 0, 0.329);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(120, 70, 0, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 200, 100, 0.2);
   color: white;
-  border-radius: 7px;
-  padding: 30px;
-  margin: 10% auto;
-  width: 600px;
-  max-width: 600px;
-  height: auto;
+  border-radius: 16px;
+  padding: 40px 36px;
+  margin: 6% auto;
+  width: 560px;
+  max-width: 90%;
   text-align: center;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
 }
+
 #timerbox h1 {
   margin-top: 0;
-  font-size: 30px;
+  font-size: 28px;
+  color: #ffe8b0;
+  text-shadow: 0 0 12px rgba(255, 160, 0, 0.4);
+  margin-bottom: 20px;
 }
 
-#timerbox p {
-  font-size: 20px;
-}
-
-#timerbox ul {
-  display: flex;
-  justify-content: center;
-}
-
-ul button {
-  width: 120px;
-  height: 50px;
-  font-size: 15px;
-  padding: 5px;
-  background-color: rgba(226, 177, 43, 0);
-  color: white;
-  border: 2px solid white;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: rgb(219, 143, 0);
-}
-button {
-  background-color: rgba(226, 177, 43, 0);
-  color: white;
-  border: 2px solid white;
-  border-radius: 5px;
-  transition: 0.3s;
-  width: 100px;
-  height: 30px;
-}
-
-.active {
-  background-color: rgb(219, 143, 0);
-}
 h2 {
-  margin-top: 0px;
-  font-size: 50px;
-  margin-bottom: 10px;
+  font-size: 72px;
+  margin: 10px 0 20px;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 180, 0, 0.5);
+  letter-spacing: 4px;
 }
 
 #sesstion ul {
+  display: flex;
+  justify-content: center;
   list-style: none;
-  margin-right: 40px;
-  gap: 20px;
+  gap: 12px;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+#sesstion ul button {
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+  border: 1px solid rgba(255, 200, 100, 0.25);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#sesstion ul button:hover {
+  background: rgba(255, 160, 0, 0.25);
+  border-color: rgba(255, 160, 0, 0.6);
+}
+
+#sesstion ul button.active {
+  background: rgba(210, 130, 0, 0.75);
+  border-color: transparent;
+  box-shadow: 0 0 12px rgba(255, 160, 0, 0.4);
+}
+
+#startbtn,
+#pausebtn,
+#resetbtn {
+  width: 100px;
+  height: 40px;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 6px;
+}
+
+#startbtn {
+  background: rgba(210, 130, 0, 0.8);
+  color: white;
+}
+
+#startbtn:hover {
+  background: rgba(255, 160, 0, 0.95);
+  transform: scale(1.05);
+}
+
+#pausebtn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#pausebtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+#resetbtn {
+  background: rgba(180, 50, 50, 0.5);
+  color: white;
+}
+
+#resetbtn:hover {
+  background: rgba(220, 60, 60, 0.8);
+  transform: scale(1.05);
+}
+
+#starcount {
+  font-size: 22px;
+  margin-top: 12px;
+  letter-spacing: 4px;
 }
 
 #ToDoList {
+  list-style: none;
+  padding: 10px 0;
+  margin: 16px 0;
+  display: flex;
   flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+#ToDoList li {
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 200, 100, 0.15);
+  border-radius: 10px;
+  padding: 10px 14px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#ToDoList li.checked::before {
+  content: "✓";
+  color: orange;
+  font-weight: bold;
+  margin-right: 6px;
+}
+#ToDoList li.checked {
+  background: rgba(255, 200, 100, 0.15);
+  border-color: rgba(255, 200, 100, 0.4);
+  opacity: 0.7;
+}
+#ToDoList li:hover {
+  background: rgba(255, 200, 100, 0.1);
+  border-color: rgba(255, 200, 100, 0.3);
+}
+
+#ToDoList li span {
+  font-size: 15px;
+  color: #fff;
 }

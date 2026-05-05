@@ -157,11 +157,13 @@ function loadTasks() {
 
     if (task.checked) {
       span.style.textDecoration = "line-through";
+      li.classList.add("checked");
     }
 
-    span.addEventListener("click", () => {
+    li.addEventListener("click", () => {
       task.checked = !task.checked;
       span.style.textDecoration = task.checked ? "line-through" : "none";
+      li.classList.toggle("checked");
       localStorage.setItem("tasks", JSON.stringify(tasks));
     });
 
