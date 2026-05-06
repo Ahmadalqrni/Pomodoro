@@ -13,7 +13,7 @@ video {
 }
 /*------------------header---------------------------------*/
 header {
-  background-color: rgba(0, 0, 0, 0.137);
+  background-color: rgba(0, 0, 0, 0.185);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
