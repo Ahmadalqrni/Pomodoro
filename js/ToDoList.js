@@ -28,12 +28,13 @@ AddTask.addEventListener("click", () => {
   // checkbox
   checkbox.type = "checkbox";
 
-  checkbox.addEventListener("change", () => {
-    task.checked = checkbox.checked;
+  li.addEventListener("click", () => {
+    checkbox.checked = !checkbox.checked;
     span.style.textDecoration = checkbox.checked ? "line-through" : "none";
     li.classList.toggle("checked");
     localStorage.setItem("tasks", JSON.stringify(tasks));
   });
+
   // span
   span.textContent = userinput.value;
 
@@ -46,6 +47,7 @@ AddTask.addEventListener("click", () => {
   userinput.value = "";
 });
 
+// load task
 // do list task save storage
 function loadTasks() {
   const saved = localStorage.getItem("tasks");

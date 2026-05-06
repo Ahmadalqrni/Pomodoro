@@ -165,6 +165,7 @@ function loadTasks() {
       span.style.textDecoration = task.checked ? "line-through" : "none";
       li.classList.toggle("checked");
       localStorage.setItem("tasks", JSON.stringify(tasks));
+      console.log(task);
     });
 
     li.appendChild(span);

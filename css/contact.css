@@ -1,0 +1,170 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #0f0f0f;
+  color: whitesmoke;
+}
+
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  transition: opacity 0.5s;
+}
+
+/* ---- HEADER ---- */
+header {
+  background-color: rgba(255, 145, 0, 0.034);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 9px;
+}
+
+header img {
+  width: 120px;
+}
+
+header ul {
+  margin-top: 50px;
+  display: flex;
+  gap: 80px;
+  list-style: none;
+  font-size: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: 150px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  transition: 0.6s;
+  display: inline-block;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: rgba(255, 115, 0, 0.8);
+  transition: 0.6s;
+}
+
+nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+nav a:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
+}
+
+/* ---- CONTACT BOX ---- */
+#contactbox {
+  background: rgba(120, 70, 0, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 200, 100, 0.2);
+  color: white;
+  border-radius: 16px;
+  padding: 40px 36px;
+  margin: 6% auto;
+  width: 500px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#contactbox h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+  color: #ffe8b0;
+  text-shadow: 0 0 12px rgba(255, 160, 0, 0.4);
+}
+
+#contactbox p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+}
+
+#nameinput,
+#emailinput {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  transition: 0.3s;
+}
+
+#nameinput::placeholder,
+#emailinput::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+#nameinput:focus,
+#emailinput:focus {
+  border-color: rgba(255, 165, 0, 0.7);
+  background: rgba(255, 255, 255, 0.13);
+}
+
+#messageinput {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  transition: 0.3s;
+  resize: vertical;
+  min-height: 120px;
+}
+
+#messageinput::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+#messageinput:focus {
+  border-color: rgba(255, 165, 0, 0.7);
+  background: rgba(255, 255, 255, 0.13);
+}
+
+#sendbtn {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(210, 130, 0, 0.8);
+  color: white;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#sendbtn:hover {
+  background: rgba(255, 160, 0, 0.95);
+  transform: scale(1.05);
+  box-shadow: 0 0 14px rgba(255, 160, 0, 0.4);
+}
