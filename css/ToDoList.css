@@ -84,11 +84,6 @@ nav a:hover {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-
 input[type="checkbox"] {
   width: 18px;
   height: 18px;

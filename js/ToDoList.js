@@ -22,6 +22,7 @@ AddTask.addEventListener("click", () => {
   // delete button
   deletebtn.addEventListener("click", () => {
     li.remove();
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   });
   deletebtn.textContent = "🗑️";
 
