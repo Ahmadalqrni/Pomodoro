@@ -1,27 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pomodoro</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
-            rel="stylesheet">
-    </head>
-    <body>
-
-        <header>
-            <a href="index.html"><img
-                    src="img/study_with_me_logo_transparent.svg"
-                    alt="Study with me logo"></a>
-            <nav>
-                <ul>
-                    <li><a href="timer.html">⏱️Timer</a></li>
-                    <li><a href="ToDoList.html">✅To-Do List</a></li>
-                    <li><a href="about.html">👤About</a></li>
-                    <li><a href="contact.html">📩Contact</a></li>
-                </ul>
-            </nav>
-            <div></div>
-        </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="css/auth.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"
+        ><img
+          src="img/study_with_me_logo_transparent.svg"
+          alt="Study with me logo"
+      /></a>
+      <nav>
+        <ul>
+          <li><a href="timer.html">🕰️Timer</a></li>
+          <li><a href="ToDoList.html">✅To-Do List</a></li>
+          <li><a href="about.html">👤About</a></li>
+          <li><a href="contact.html">📩Contact</a></li>
+        </ul>
+      </nav>
+      <div></div>
+    </header>
+    <video src="vid/wlcomepage.mp4" autoplay muted loop></video>
+    <div id="contactbox">
+      <h1>👤 login</h1>
+      <p>Welcome Back</p>
+      <input
+        type="text"
+        placeholder="Your Username"
+        id="UsernameInput"
+        style="display: none"
+      />
+      <input type="email" placeholder="Your Email" id="emailInput" />
+      <input type="password" placeholder="Your Password" id="passwordInput" />
+      <button id="loginbtn">login</button>
+      <button id="signupbtn">Create new Account</button>
+    </div>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

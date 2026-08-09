@@ -1,57 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Timer</title>
-        <link rel="stylesheet" href="css/Timer.css">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
-            rel="stylesheet">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+    <link rel="stylesheet" href="css/Timer.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-    <body>
-        <header>
-            <a href="index.html"><img
-                    src="img/study_with_me_logo_transparent.svg"
-                    alt="Study with me logo"></a>
-            <nav>
-                <ul>
-                    <li><a href="timer.html">🕰️Timer</a></li>
-                    <li><a href="ToDoList.html">✅To-Do List</a></li>
-                    <li><a href="about.html">👤About</a></li>
-                    <li><a href="contact.html">📩Contact</a></li>
-                </ul>
-            </nav>
-            <div></div>
-        </header>
-        <video src="vid/focus.mp4" autoplay muted loop playsinline></video>
-        <div class="overlay"></div>
-        <div id="timerbox">
-            <h1 id="titlesession">🍅 Focus Time 🍅</h1>
-            <nav id="sesstion">
-                <ul>
-                    <li><button id="sessionfocus"
-                            class="active">Focus</button></li>
-                    <li><button id="sessionshort">Short
-                            Break</button></li>
-                    <li><button id="sessionlong">long
-                            Break</button></li>
-                </ul>
-            </nav>
-            <nav id="listbox">
-                <ul id="ToDoList">
+  <body>
+    <header>
+      <a href="index.html"
+        ><img
+          src="img/study_with_me_logo_transparent.svg"
+          alt="Study with me logo"
+      /></a>
+      <nav>
+        <ul>
+          <li><a href="timer.html">🕰️Timer</a></li>
+          <li><a href="ToDoList.html">✅To-Do List</a></li>
+          <li><a href="about.html">👤About</a></li>
+          <li><a href="contact.html">📩Contact</a></li>
+        </ul>
+      </nav>
+      <div></div>
+    </header>
+    <video src="vid/focus.mp4" autoplay muted loop playsinline></video>
+    <div class="overlay"></div>
+    <div id="timerbox">
+      <h1 id="titlesession">🍅 Focus Time 🍅</h1>
+      <nav id="sesstion">
+        <ul>
+          <li><button id="sessionfocus" class="active">Focus</button></li>
+          <li><button id="sessionshort">Short Break</button></li>
+          <li><button id="sessionlong">long Break</button></li>
+        </ul>
+      </nav>
+      <nav id="listbox">
+        <ul id="ToDoList"></ul>
+      </nav>
 
-                </ul>
-            </nav>
-
-            <h2 id="timerdisplay">25:00</h2>
-            <button id="startbtn">Start</button>
-            <button id="pausebtn">Pause</button>
-            <button id="resetbtn">Reset</button>
-            <p id="starcount"></p>
-
-        </div>
-        <script src="js/timer.js"></script>
-    </body>
+      <h2 id="timerdisplay">25:00</h2>
+      <button id="startbtn">Start</button>
+      <button id="pausebtn">Pause</button>
+      <button id="resetbtn">Reset</button>
+      <p id="starcount"></p>
+    </div>
+    <script src="js/timer.js"></script>
+    <script src="js/visitTracker.js"></script>
+  </body>
 </html>
