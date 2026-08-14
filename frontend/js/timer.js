@@ -1,3 +1,5 @@
+import { addpoint } from "../js/api.js";
+// the moemnt remove the add work find
 const timerdisplay = document.getElementById("timerdisplay");
 const startbtn = document.getElementById("startbtn");
 const resetbtn = document.getElementById("resetbtn");
@@ -16,7 +18,7 @@ let timer = null;
 let session = "focus";
 
 //start button
-startbtn.addEventListener("click", () => {
+startbtn.addEventListener("click", async () => {
   if (timeRunning) return;
   timeRunning = true;
   timer = setInterval(() => {
@@ -47,6 +49,19 @@ startbtn.addEventListener("click", () => {
     seconds = seconds < 10 ? "0" + seconds : seconds;
     timerdisplay.textContent = `${minutes}:${seconds}`;
   }, 1000);
+
+  console.log(addpoint);
+  try {
+    const res = await addpoint();
+    if (res && typeof window.updatePoints === "function") {
+      // backend returns { message, points }
+      if (res.points !== undefined) {
+        window.updatePoints(res.points);
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 // Rest button

@@ -33,4 +33,19 @@ const addpoint = async (req, res) => {
   }
 };
 
-export { addpoint };
+const showpoint = async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.userId },
+      select: { points: true },
+    });
+    res.status(200).json({
+      status: "sucssed",
+      points: user.points,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { addpoint, showpoint };

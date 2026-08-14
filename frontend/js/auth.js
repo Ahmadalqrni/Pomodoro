@@ -1,3 +1,5 @@
+import { login, signup, logout } from "../js/api.js";
+
 const authHeading = document.querySelector("#contactbox h1");
 const authMessage = document.querySelector("#contactbox p");
 const usernameInput = document.querySelector("#UsernameInput");
@@ -8,6 +10,7 @@ const signupBtn = document.querySelector("#signupbtn");
 
 let isSignupMode = false;
 
+// change to signup or login
 function updateAuthMode() {
   if (isSignupMode) {
     authHeading.textContent = "👤 signup";
@@ -24,27 +27,13 @@ function updateAuthMode() {
   }
 }
 
+// false login mode || true signup mode
 signupBtn.addEventListener("click", () => {
   isSignupMode = !isSignupMode;
   updateAuthMode();
 });
 
-async function sendAuthRequest(url, payload) {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  const data = await response.json().catch(() => null);
-  if (!response.ok) {
-    throw new Error(data?.message || response.statusText || "Request failed");
-  }
-  return data;
-}
-
+// checking if we on login mode or signup mode
 loginBtn.addEventListener("click", async () => {
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
@@ -54,25 +43,39 @@ loginBtn.addEventListener("click", async () => {
     alert("Please enter all required fields.");
     return;
   }
-
-  const payload = { email, password };
-  if (isSignupMode) {
-    payload.username = username;
-  }
-
-  const endpoint = isSignupMode ? "/api/signup" : "/api/login";
-
   try {
-    const result = await sendAuthRequest(endpoint, payload);
-    console.log("Auth success", result);
-    localStorage.setItem("pomodoroUserId", result.id);
-    alert(
-      `Welcome ${result.username}! Your visit count is ${result.visitDays}.`,
-    );
-    window.location.href = "index.html";
+    const result = isSignupMode
+      ? await signup(username, email, password)
+      : await login(email, password);
+
+    // handle success responses from backend
+    if (result && result.status === "success") {
+      if (isSignupMode) {
+        authHeading.textContent = "✅ Signup successful";
+        authMessage.textContent = `Welcome, ${
+          result.data && result.data.user && result.data.user.name
+            ? result.data.user.name
+            : username
+        }`;
+      } else {
+        authHeading.textContent = "✅ Logged in";
+        authMessage.textContent = `Welcome back, ${
+          result.data && result.data.user && result.data.user.name
+            ? result.data.user.name
+            : ""
+        }`;
+      }
+
+      // redirect to timer after a short delay
+      setTimeout(() => {
+        window.location.href = "timer.html";
+      }, 900);
+    } else {
+      // backend may return { message: '...' } on error
+      throw new Error((result && result.message) || "Authentication failed");
+    }
   } catch (error) {
-    console.error("Auth error", error);
-    alert(error.message || "Unable to connect to the auth server.");
+    alert(error.message || "Something went wrong");
   }
 });
 

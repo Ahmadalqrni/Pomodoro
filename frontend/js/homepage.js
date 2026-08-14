@@ -1,27 +1,27 @@
+// Simple points box for the homepage (non-module script)
 const trackerBox = document.createElement("div");
 trackerBox.id = "visit-tracker";
 trackerBox.innerHTML = `
-  <div class="tracker-title">Visit Tracker</div>
-  <div class="tracker-content">
-    <div><strong>Days visited:</strong> <span id="visitDaysValue">0</span></div>
+  <div class="tracker-content-small">
+    <span id="pointsEmoji">🍅</span>
+    <span id="pointsValue">0</span>
+    <span class="points-label">points</span>
   </div>
 `;
 document.body.appendChild(trackerBox);
 
-async function updateTracker(userId) {
-  if (!userId) return;
-
+function updatePointsLocal(value) {
+  const val = typeof value === "number" ? value : Number(value) || 0;
+  const el = document.getElementById("pointsValue");
+  if (el) el.textContent = val;
   try {
-    const response = await fetch(`/api/user/${userId}`);
-    if (!response.ok) return;
-    const data = await response.json();
-    document.querySelector("#visitDaysValue").textContent = data.visitDays;
-  } catch (error) {
-    console.error("Tracker load failed", error);
-  }
+    localStorage.setItem("pomodoroPoints", String(val));
+  } catch (e) {}
 }
 
-const savedUserId = localStorage.getItem("pomodoroUserId");
-if (savedUserId) {
-  updateTracker(savedUserId);
-}
+// reuse global updater if exists
+if (!window.updatePoints) window.updatePoints = updatePointsLocal;
+
+// initialize from localStorage
+const savedPoints = localStorage.getItem("pomodoroPoints");
+if (savedPoints) updatePointsLocal(Number(savedPoints));

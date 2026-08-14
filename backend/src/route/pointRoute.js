@@ -1,9 +1,11 @@
 import express from "express";
-import { addpoint } from "../controller/pointController.js";
 import protect from "../middleware/protect.js";
+
+import { addpoint, showpoint } from "../controller/pointController.js";
 
 const routes = express.Router();
 
 routes.post("/visit", protect, addpoint);
+routes.get("/visit", protect, showpoint);
 
 export default routes;
