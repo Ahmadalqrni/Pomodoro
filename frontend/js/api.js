@@ -1,47 +1,45 @@
-//auth
-async function login(email, password) {
-  const res = await fetch("https://pomodoro-f8a3.onrender.com/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ email, password }),
-  });
-  return res.json();
-}
-async function signup(name, email, password) {
-  const res = await fetch("https://pomodoro-f8a3.onrender.com/auth/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({ email, password }),
-  });
-  return res.json();
-}
-async function logout() {
-  const res = await fetch("https://pomodoro-f8a3.onrender.com/auth/logout", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-  });
+const API = "https://pomodoro-f8a3.onrender.com";
 
+// auth
+async function login(email, password) {
+  const res = await fetch(`${API}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ email, password }),
+  });
+  return res.json();
+}
+
+async function signup(name, email, password) {
+  const res = await fetch(`${API}/auth/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ name, email, password }),
+  });
+  return res.json();
+}
+
+async function logout() {
+  const res = await fetch(`${API}/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
   return res.json();
 }
 
 // point
-
 async function addpoint() {
-  const res = await fetch("https://pomodoro-f8a3.onrender.com/point/visit", {
+  const res = await fetch(`${API}/point/visit`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     credentials: "include",
   });
   return res.json();
 }
 
 async function getPoints() {
-  const res = await fetch("https://pomodoro-f8a3.onrender.com/point", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
+  const res = await fetch(`${API}/point`, {
     credentials: "include",
   });
   return res.json();
