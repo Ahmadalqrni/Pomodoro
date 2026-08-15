@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://pomodoro-f8a3.onrender.com/:path*"
+    }
+  ]
+}
