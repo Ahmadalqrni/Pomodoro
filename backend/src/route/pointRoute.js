@@ -6,6 +6,6 @@ import { addpoint, showpoint } from "../controller/pointController.js";
 const routes = express.Router();
 
 routes.post("/visit", protect, addpoint);
-routes.get("/visit", protect, showpoint);
+routes.get("/", protect, showpoint);
 
 export default routes;
