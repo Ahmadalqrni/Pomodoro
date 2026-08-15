@@ -1,4 +1,4 @@
-import { login, signup, logout } from "../js/api.js";
+import { login, signup, logout, getPoints } from "../js/api.js";
 
 const authHeading = document.querySelector("#contactbox h1");
 const authMessage = document.querySelector("#contactbox p");
@@ -67,6 +67,25 @@ loginBtn.addEventListener("click", async () => {
       }
 
       // redirect to timer after a short delay
+      // set quick local login flag so header updates immediately
+      try {
+        localStorage.setItem("pomodoroIsLoggedIn", "1");
+      } catch (e) {}
+
+      // try fetching points to populate UI before redirect
+      (async () => {
+        try {
+          const p = await getPoints();
+          if (p && p.points !== undefined) {
+            try {
+              localStorage.setItem("pomodoroPoints", String(p.points));
+            } catch (e) {}
+          }
+        } catch (e) {
+          // ignore
+        }
+      })();
+
       setTimeout(() => {
         window.location.href = "timer.html";
       }, 900);
