@@ -1,5 +1,7 @@
-const API = "https://pomodoro-f8a3.onrender.com";
-
+const API =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5001"
+    : "https://pomodoro-f8a3.onrender.com";
 // auth
 async function login(email, password) {
   const res = await fetch(`${API}/auth/login`, {

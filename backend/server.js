@@ -22,7 +22,9 @@ app.use(
 //routes
 app.use("/auth", authRoute);
 app.use("/point", pointRoute);
-
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("CLIENT_URL:", process.env.CLIENT_URL);
 app.listen(PORT, () => {
   console.log(`sever running on ${PORT}`);
 });

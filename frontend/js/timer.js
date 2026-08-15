@@ -1,5 +1,5 @@
 import { addpoint } from "../js/api.js";
-// the moemnt remove the add work find
+
 const timerdisplay = document.getElementById("timerdisplay");
 const startbtn = document.getElementById("startbtn");
 const resetbtn = document.getElementById("resetbtn");
