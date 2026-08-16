@@ -45,6 +45,7 @@ const showpoint = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    return res.status(500).json({ message: "Something went wrong" });
   }
 };
 
