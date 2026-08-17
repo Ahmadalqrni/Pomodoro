@@ -18,7 +18,8 @@ AddTask.addEventListener("click", () => {
   const checkbox = document.createElement("input");
   const deletebtn = document.createElement("button");
   const span = document.createElement("span");
-  if (userinput.value === "") return alert("Enter a Task please");
+  if (userinput.value === "")
+    return showGlassAlert("Enter a task please", "warning");
   // delete button
   deletebtn.addEventListener("click", () => {
     li.remove();

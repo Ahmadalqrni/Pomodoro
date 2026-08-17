@@ -40,7 +40,7 @@ loginBtn.addEventListener("click", async () => {
   const username = usernameInput.value.trim();
 
   if (!email || !password || (isSignupMode && !username)) {
-    alert("Please enter all required fields.");
+    showGlassAlert("Please enter all required fields.", "warning");
     return;
   }
   try {
@@ -94,7 +94,7 @@ loginBtn.addEventListener("click", async () => {
       throw new Error((result && result.message) || "Authentication failed");
     }
   } catch (error) {
-    alert(error.message || "Something went wrong");
+    showGlassAlert(error.message || "Something went wrong", "error");
   }
 });
 
