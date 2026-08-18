@@ -67,8 +67,8 @@ nav a::after {
   left: 50%;
   width: 0;
   height: 2px;
-  background: rgba(255, 115, 0, 0.8);
-  text-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
+  background: rgba(var(--accent-rgb), 0.8);
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.8);
   transition: 0.6s;
 }
 
@@ -80,7 +80,7 @@ nav a:hover::after {
 
 nav a:hover {
   transform: scale(1.2);
-  text-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.8);
 }
 
 #aboutbox {
@@ -103,7 +103,7 @@ nav a:hover {
 #aboutbox h1 {
   font-size: 32px;
   color: #ffe8b0;
-  text-shadow: 0 0 12px rgba(255, 160, 0, 0.4);
+  text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
   margin-bottom: 30px;
   text-align: center;
 }
@@ -113,7 +113,7 @@ nav a:hover {
   font-size: 20px;
   margin-top: 28px;
   margin-bottom: 10px;
-  text-shadow: 0 0 8px rgba(255, 160, 0, 0.3);
+  text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.3);
 }
 
 #aboutbox p {

@@ -71,7 +71,7 @@ nav a::after {
   left: 50%;
   width: 0;
   height: 2px;
-  background: rgba(255, 115, 0, 0.8);
+  background: rgba(var(--accent-rgb), 0.8);
   transition: 0.6s;
 }
 
@@ -82,7 +82,7 @@ nav a:hover::after {
 
 nav a:hover {
   transform: scale(1.2);
-  text-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
+  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.8);
 }
 
 /* ---- CONTACT BOX ---- */
@@ -110,7 +110,7 @@ nav a:hover {
   margin: 0 0 4px;
   font-size: 28px;
   color: #ffe8b0;
-  text-shadow: 0 0 12px rgba(255, 160, 0, 0.4);
+  text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
 }
 
 #contactbox p {
@@ -144,7 +144,7 @@ nav a:hover {
 #UsernameInput:focus,
 #emailInput:focus,
 #passwordInput:focus {
-  border-color: rgba(255, 165, 0, 0.7);
+  border-color: rgba(var(--accent-rgb), 0.7);
   background: rgba(255, 255, 255, 0.16);
 }
 
@@ -153,7 +153,7 @@ nav a:hover {
 }
 
 #messageinput:focus {
-  border-color: rgba(255, 165, 0, 0.7);
+  border-color: rgba(var(--accent-rgb), 0.7);
   background: rgba(255, 255, 255, 0.16);
 }
 
@@ -162,7 +162,7 @@ nav a:hover {
   padding: 12px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(210, 130, 0, 0.55);
+  background: rgba(var(--accent-rgb), 0.55);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   color: white;
@@ -175,9 +175,9 @@ nav a:hover {
 
 #loginbtn:hover,
 #signupbtn:hover {
-  background: rgba(255, 160, 0, 0.7);
+  background: rgba(var(--accent-rgb), 0.7);
   transform: scale(1.05);
-  box-shadow: 0 0 14px rgba(255, 160, 0, 0.4),
+  box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 #visit-tracker {

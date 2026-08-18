@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About</title>
     <link rel="stylesheet" href="css/about.css" />
+    <link rel="stylesheet" href="css/settings.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
       rel="stylesheet"
@@ -49,8 +50,66 @@
       <hr />
       <p>⚒️The Website still just progress⚒️</p>
     </div>
+    <button id="openSettings">⚙️</button>
+    <!--INSIDE SETTING BUTTON-->
+    <div id="overlay" class="hidden">
+      <div id="settingsPanel">
+        <button id="closeSettings">×</button>
+        <h3>Timer</h3>
+        <!-- 🍅 native number-input spin arrows replaced with themed +/- steppers -->
+        <label>
+          Focus
+          <div class="stepper">
+            <button type="button" class="step-btn minus" data-target="focusInput">−</button>
+            <input type="number" id="focusInput" min="1" max="90" value="25" />
+            <button type="button" class="step-btn plus" data-target="focusInput">+</button>
+          </div>
+        </label>
+        <label>
+          Short break
+          <div class="stepper">
+            <button type="button" class="step-btn minus" data-target="shortInput">−</button>
+            <input type="number" id="shortInput" min="1" max="30" value="5" />
+            <button type="button" class="step-btn plus" data-target="shortInput">+</button>
+          </div>
+        </label>
+        <label>
+          Long break
+          <div class="stepper">
+            <button type="button" class="step-btn minus" data-target="longInput">−</button>
+            <input type="number" id="longInput" min="1" max="60" value="15" />
+            <button type="button" class="step-btn plus" data-target="longInput">+</button>
+          </div>
+        </label>
+        <!-- 🍅 lets the user apply new timer lengths right away, no page refresh needed -->
+        <button id="applySettings">Apply Time</button>
+        <h3>Theme</h3>
+        <div class="swatches">
+          <button
+            class="swatch"
+            data-color="255, 115, 0"
+            style="background: rgb(255, 115, 0)"
+          ></button>
+          <button
+            class="swatch"
+            data-color="255, 99, 71"
+            style="background: rgb(255, 99, 71)"
+          ></button>
+          <button
+            class="swatch"
+            data-color="74, 158, 255"
+            style="background: rgb(74, 158, 255)"
+          ></button>
+          <button
+            class="swatch"
+            data-color="61, 220, 151"
+            style="background: rgb(61, 220, 151)"
+          ></button>
+        </div>
+      </div>
+    </div>
     <script src="js/glassAlert.js"></script>
-    <script src="js/ToDoList.js"></script>
+    <script src="js/setting.js" defer></script>
     <script type="module" src="js/visitTracker.js"></script>
     <script type="module" src="js/authStatus.js"></script>
   </body>
