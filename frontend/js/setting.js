@@ -44,5 +44,38 @@ swatches.forEach((swatch) => {
     applyAccent(swatch.dataset.color);
   });
 });
+// 🍅 timer length inputs (focus / short break / long break)
+const focusInput = document.getElementById("focusInput");
+const shortInput = document.getElementById("shortInput");
+const longInput = document.getElementById("longInput");
+
+const timerInputs = {
+  focus: focusInput,
+  short: shortInput,
+  long: longInput,
+};
+
+// 🍅 prefill inputs with saved values instead of the hardcoded HTML defaults
+const savedSettings = loadSettings();
+Object.entries(timerInputs).forEach(([key, input]) => {
+  input.value = savedSettings.timer[key];
+});
+
+// 🍅 wire up all three inputs, not just focus
+Object.entries(timerInputs).forEach(([key, input]) => {
+  input.addEventListener("change", () => {
+    const min = Number(input.min);
+    const max = Number(input.max);
+    let value = Number(input.value);
+
+    if (!Number.isFinite(value) || value < min) value = min;
+    if (value > max) value = max;
+    input.value = value;
+
+    const settings = loadSettings();
+    settings.timer[key] = value;
+    saveSettings(settings);
+  });
+});
 
 applyAccent(loadSettings().theme.accentRgb);

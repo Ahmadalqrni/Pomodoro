@@ -12,7 +12,8 @@ const sessionlong = document.getElementById("sessionlong");
 const ToDoList = document.getElementById("ToDoList");
 
 let count = 0;
-let timeLeft = 1500;
+// 🍅 timeLeft is now set from saved settings via switchSession(), not hardcoded
+let timeLeft;
 let timeRunning = false;
 let timer = null;
 let session = "focus";
@@ -32,6 +33,7 @@ startbtn.addEventListener("click", async () => {
           session = "long";
           count = 0;
           starcount.textContent = "";
+          playSound(); // 🍅 long break now plays the sound too
         } else {
           session = "short";
           playSound();
@@ -67,8 +69,8 @@ startbtn.addEventListener("click", async () => {
 // Rest button
 resetbtn.addEventListener("click", () => {
   session = "focus";
-  timeLeft = 1500;
-  timerdisplay.textContent = "25:00";
+  // 🍅 timeLeft/display reset now goes through switchSession() below,
+  // so reset respects the user's custom timer lengths
   timeRunning = false;
   switchSession(session, false);
   clearInterval(timer);
@@ -84,25 +86,37 @@ pausebtn.addEventListener("click", () => {
   clearInterval(timer);
   timeRunning = false;
 });
+// 🍅 formats seconds into m:ss for the settings-driven session lengths below
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s < 10 ? "0" + s : s}`;
+}
 
 function switchSession(session, autoStart = true) {
+  // 🍅 session lengths now come from user settings instead of hardcoded 1500/300/900
+  const s = loadSettings();
+  const focusSecs = s.timer.focus * 60;
+  const shortSecs = s.timer.short * 60;
+  const longSecs = s.timer.long * 60;
+
   const sessions = {
     focus: {
-      time: 1500,
+      time: focusSecs,
       title: "🍅 Focus Time 🍅",
-      timedisplay: "25:00",
+      timedisplay: formatTime(focusSecs),
       video: "vid/focus.mp4",
     },
     short: {
-      time: 300,
+      time: shortSecs,
       title: "☕ Break Time ☕",
-      timedisplay: "5:00",
+      timedisplay: formatTime(shortSecs),
       video: "vid/break.mp4",
     },
     long: {
-      time: 900,
+      time: longSecs,
       title: "😴 Long Break 😴",
-      timedisplay: "15:00",
+      timedisplay: formatTime(longSecs),
       video: "vid/longbreak.mp4",
     },
   };
@@ -187,6 +201,8 @@ function loadTasks() {
     ToDoList.appendChild(li);
   });
 }
+// 🍅 apply saved timer lengths to the display as soon as the page loads
+switchSession("focus", false);
 window.addEventListener("storage", () => {
   ToDoList.innerHTML = "";
   loadTasks();
