@@ -81,6 +81,16 @@ Object.entries(timerInputs).forEach(([key, input]) => {
   input.addEventListener("change", () => applyTimerInput(key, input));
 });
 
+// 🍅 +/- steppers replacing the native number-input spin arrows
+document.querySelectorAll(".step-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const input = document.getElementById(btn.dataset.target);
+    const step = btn.classList.contains("plus") ? 1 : -1;
+    input.value = Number(input.value) + step;
+    input.dispatchEvent(new Event("change"));
+  });
+});
+
 // 🍅 Apply Time button: saves whatever is in the inputs right now and tells
 // timer.js to refresh the on-screen time immediately, no page refresh needed
 const applySettingsBtn = document.getElementById("applySettings");
