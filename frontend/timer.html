@@ -98,9 +98,11 @@
       </div>
     </div>
     <script src="js/glassAlert.js"></script>
+    <!-- 🍅 setting.js must load before timer.js: timer.js calls loadSettings()
+         at startup, and script/module tags run in document order -->
+    <script src="js/setting.js" defer></script>
     <script type="module" src="js/timer.js"></script>
     <script type="module" src="js/visitTracker.js"></script>
     <script type="module" src="js/authStatus.js"></script>
-    <script src="js/setting.js" defer></script>
   </body>
 </html>
