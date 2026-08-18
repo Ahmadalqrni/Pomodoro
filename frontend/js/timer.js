@@ -207,4 +207,12 @@ window.addEventListener("storage", () => {
   ToDoList.innerHTML = "";
   loadTasks();
 });
+
+// 🍅 "Apply Time" button in settings: refresh the on-screen time right away
+// instead of making the user reload the page for the new lengths to show up
+window.addEventListener("timerSettingsChanged", () => {
+  clearInterval(timer);
+  timeRunning = false;
+  switchSession(session, false);
+});
 loadTasks();

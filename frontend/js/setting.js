@@ -61,21 +61,34 @@ Object.entries(timerInputs).forEach(([key, input]) => {
   input.value = savedSettings.timer[key];
 });
 
+// 🍅 clamps an input to its min/max and saves it under settings.timer[key]
+function applyTimerInput(key, input) {
+  const min = Number(input.min);
+  const max = Number(input.max);
+  let value = Number(input.value);
+
+  if (!Number.isFinite(value) || value < min) value = min;
+  if (value > max) value = max;
+  input.value = value;
+
+  const settings = loadSettings();
+  settings.timer[key] = value;
+  saveSettings(settings);
+}
+
 // 🍅 wire up all three inputs, not just focus
 Object.entries(timerInputs).forEach(([key, input]) => {
-  input.addEventListener("change", () => {
-    const min = Number(input.min);
-    const max = Number(input.max);
-    let value = Number(input.value);
+  input.addEventListener("change", () => applyTimerInput(key, input));
+});
 
-    if (!Number.isFinite(value) || value < min) value = min;
-    if (value > max) value = max;
-    input.value = value;
-
-    const settings = loadSettings();
-    settings.timer[key] = value;
-    saveSettings(settings);
-  });
+// 🍅 Apply Time button: saves whatever is in the inputs right now and tells
+// timer.js to refresh the on-screen time immediately, no page refresh needed
+const applySettingsBtn = document.getElementById("applySettings");
+applySettingsBtn.addEventListener("click", () => {
+  Object.entries(timerInputs).forEach(([key, input]) =>
+    applyTimerInput(key, input),
+  );
+  window.dispatchEvent(new CustomEvent("timerSettingsChanged"));
 });
 
 applyAccent(loadSettings().theme.accentRgb);

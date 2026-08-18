@@ -413,6 +413,27 @@ h2 {
   box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.25);
 }
 
+#applySettings {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: white;
+  background: rgba(var(--accent-rgb), 0.7);
+  border: 1px solid rgba(var(--accent-rgb), 0.8);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#applySettings:hover {
+  background: rgba(var(--accent-rgb), 0.9);
+}
+
 #closeSettings {
   position: absolute;
   top: 14px;
