@@ -5,3 +5,5 @@ node_modules
 /generated/prisma
 
 *.mp4
+
+.DS_Store
