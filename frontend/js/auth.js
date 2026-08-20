@@ -10,7 +10,7 @@ const signupBtn = document.querySelector("#signupbtn");
 
 let isSignupMode = false;
 
-// change to signup or login
+// checking if was true or false
 function updateAuthMode() {
   if (isSignupMode) {
     authHeading.textContent = "👤 signup";
@@ -27,13 +27,19 @@ function updateAuthMode() {
   }
 }
 
-// false login mode || true signup mode
+//  change it from ture to false
 signupBtn.addEventListener("click", () => {
   isSignupMode = !isSignupMode;
   updateAuthMode();
 });
 
-// checking if we on login mode or signup mode
+// click enter when user click enter going to trigger loginbtn
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    loginBtn.click();
+  }
+});
+
 loginBtn.addEventListener("click", async () => {
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();

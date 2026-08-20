@@ -65,4 +65,9 @@ just visits.
 
 ## note
 
+cd backend
+npm install
+npx prisma generate
+npm run dev
+
 > 🚧 This project is still in progress...
