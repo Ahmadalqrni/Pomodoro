@@ -12,7 +12,7 @@ const signup = async (req, res) => {
         .json({ message: "Name, email and password are required" });
     }
 
-    if (!password || password.length < 8) {
+    if (!password || (password.length < 8 && password > 72)) {
       return res
         .status(400)
         .json({ message: "Password must be at least 8 characters" });
@@ -53,20 +53,22 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
+    // if input was empty 
     if (!password || !email) {
       return res
         .status(400)
         .json({ message: "Email and password are required" });
     }
-
+    // start search 
     const user = await prisma.user.findUnique({
       where: { email },
     });
 
+    // not exists out 
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
-
+    // checking compare password
     const validpassword = await bcrypt.compare(password, user.password);
 
     if (!validpassword) {

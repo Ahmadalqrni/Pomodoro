@@ -30,7 +30,7 @@ header img {
 header ul {
   margin-top: 50px;
   display: flex;
-  gap: 80px;
+  gap: 40px;
   list-style: none;
   font-size: 20px;
 }

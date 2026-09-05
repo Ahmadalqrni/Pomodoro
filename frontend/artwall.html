@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>auth</title>
-    <link rel="stylesheet" href="css/auth.css" />
+    <title>Art Wall</title>
+    <link rel="stylesheet" href="css/artwall.css" />
     <link rel="stylesheet" href="css/settings.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400&display=swap"
@@ -30,89 +30,77 @@
       <nav id="login_box">
         <ul>
           <li><a href="auth.html">💻Login</a></li>
-          <li><a href="auth.html?mode=signup">⭐Signup</a></li>
+          <li><a href="auth.html">⭐Signup</a></li>
         </ul>
       </nav>
     </header>
     <video src="vid/wlcomepage.mp4" autoplay muted loop></video>
-    <div id="contactbox">
-      <h1>👤 login</h1>
-      <p>Welcome Back</p>
-      <input
-        type="text"
-        placeholder="Your Username"
-        id="UsernameInput"
-        style="display: none"
-      />
-      <input type="email" placeholder="Your Email" id="emailInput" />
-      <input type="password" placeholder="Your Password" id="passwordInput" />
-      <button id="loginbtn" onclick="logingbtn()">login</button>
-      <button id="signupbtn">Create new Account</button>
+    <div id="artwallbox">
+      <h1>🎨 Art Wall 🎨</h1>
+      <p class="art-hint">Your drawing is saved automatically. Pick a size, any color, then paint.</p>
+
+      <div class="art-toolbar">
+        <div class="art-group" role="group" aria-label="Canvas size">
+          <span class="art-label">Size</span>
+          <button type="button" class="size-btn" data-size="8">8</button>
+          <button type="button" class="size-btn" data-size="16">16</button>
+          <button type="button" class="size-btn" data-size="24">24</button>
+          <button type="button" class="size-btn" data-size="32">32</button>
+        </div>
+        <div class="art-group">
+          <label class="art-label" for="colorPicker">Color</label>
+          <input type="color" id="colorPicker" value="#ff7300" />
+          <input
+            type="text"
+            id="colorHex"
+            value="#ff7300"
+            maxlength="7"
+            spellcheck="false"
+            aria-label="Hex color"
+          />
+        </div>
+        <div class="art-group" role="group" aria-label="Tools">
+          <button type="button" id="paintTool" class="tool-btn active">🖌️ Paint</button>
+          <button type="button" id="eraseTool" class="tool-btn">🧹 Erase</button>
+        </div>
+      </div>
+
+      <canvas id="artCanvas" width="512" height="512" aria-label="Pixel art canvas"></canvas>
+
+      <div class="art-actions">
+        <button type="button" id="downloadArt">⬇️ Download</button>
+        <button type="button" id="clearArt">🗑️ Clear</button>
+      </div>
     </div>
     <button id="openSettings">⚙️</button>
-    <!--INSIDE SETTING BUTTON-->
     <div id="overlay" class="hidden">
       <div id="settingsPanel">
         <button id="closeSettings">×</button>
         <h3>Timer</h3>
-        <!-- 🍅 native number-input spin arrows replaced with themed +/- steppers -->
         <label>
           Focus
           <div class="stepper">
-            <button
-              type="button"
-              class="step-btn minus"
-              data-target="focusInput"
-            >
-              −
-            </button>
+            <button type="button" class="step-btn minus" data-target="focusInput">−</button>
             <input type="number" id="focusInput" min="1" max="90" value="25" />
-            <button
-              type="button"
-              class="step-btn plus"
-              data-target="focusInput"
-            >
-              +
-            </button>
+            <button type="button" class="step-btn plus" data-target="focusInput">+</button>
           </div>
         </label>
         <label>
           Short break
           <div class="stepper">
-            <button
-              type="button"
-              class="step-btn minus"
-              data-target="shortInput"
-            >
-              −
-            </button>
+            <button type="button" class="step-btn minus" data-target="shortInput">−</button>
             <input type="number" id="shortInput" min="1" max="30" value="5" />
-            <button
-              type="button"
-              class="step-btn plus"
-              data-target="shortInput"
-            >
-              +
-            </button>
+            <button type="button" class="step-btn plus" data-target="shortInput">+</button>
           </div>
         </label>
         <label>
           Long break
           <div class="stepper">
-            <button
-              type="button"
-              class="step-btn minus"
-              data-target="longInput"
-            >
-              −
-            </button>
+            <button type="button" class="step-btn minus" data-target="longInput">−</button>
             <input type="number" id="longInput" min="1" max="60" value="15" />
-            <button type="button" class="step-btn plus" data-target="longInput">
-              +
-            </button>
+            <button type="button" class="step-btn plus" data-target="longInput">+</button>
           </div>
         </label>
-        <!-- 🍅 lets the user apply new timer lengths right away, no page refresh needed -->
         <button id="applySettings">Apply Time</button>
         <h3>Theme</h3>
         <div class="swatches">
@@ -141,7 +129,7 @@
     </div>
     <script src="js/glassAlert.js"></script>
     <script src="js/setting.js" defer></script>
-    <script type="module" src="js/auth.js"></script>
+    <script src="js/artwall.js"></script>
     <script type="module" src="js/visitTracker.js"></script>
     <script type="module" src="js/authStatus.js"></script>
   </body>
