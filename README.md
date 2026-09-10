@@ -95,7 +95,3 @@ PORT=5001
 cd frontend
 npx serve -l 5173
 \`\`\`
-
-## 💡 What I Learned
-
-> Write this yourself — it's the section people actually read.
