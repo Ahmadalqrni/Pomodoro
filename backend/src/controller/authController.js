@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import prisma from "../config/db.js";
-import ApiError from "../utils/ApiError.ts";
-import catchAsync from "../utils/catchAsync.ts";
+import ApiError from "../utils/ApiError.js";
+import catchAsync from "../utils/catchAsync.js";
 import generateToken from "../utils/genratetoken.js";
 
 // signup

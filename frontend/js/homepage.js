@@ -26,17 +26,16 @@ if (!window.updatePoints) window.updatePoints = updatePointsLocal;
 
 // initialize: try fetching from backend (if logged in), else fall back to localStorage
 // Try to fetch points with retries to handle cookie timing after login
-async function tryFetchPointsHome(retries = 4, delayMs = 400) {
-  for (let i = 0; i <= retries; i++) {
-    try {
-      const res = await getPoints();
-      if (res && res.points !== undefined) return res.points;
-    } catch (e) {}
-    if (i < retries) await new Promise((r) => setTimeout(r, delayMs));
-  }
-  return null;
-}
 
+async function tryFetchPointsHome() {
+  try {
+    const res = await getPoints();
+    return res.points;
+  } catch (e) {
+    console.log("Not logged in");
+    return null;
+  }
+}
 (async function initPoints() {
   const pts = await tryFetchPointsHome();
   if (pts !== null) {

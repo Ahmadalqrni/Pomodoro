@@ -38,6 +38,7 @@ async function addpoint() {
 }
 
 async function getPoints() {
+  
   const res = await fetch(`${API}/point/show`, {
     credentials: "include",
   });

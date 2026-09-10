@@ -7,6 +7,9 @@ import cors from "cors";
 import authRoute from "./src/route/authRoute.js";
 import pointRoute from "./src/route/pointRoute.js";
 
+// middleware
+import errorHandler from "./src/middleware/errorHandler.js";
+
 const app = express();
 const PORT = 5001;
 
@@ -22,6 +25,7 @@ app.use(
 //routes
 app.use("/auth", authRoute);
 app.use("/point", pointRoute);
+app.use(errorHandler);
 console.log("NODE_ENV:", process.env.NODE_ENV);
 console.log("NODE_ENV:", process.env.NODE_ENV);
 console.log("CLIENT_URL:", process.env.CLIENT_URL);
