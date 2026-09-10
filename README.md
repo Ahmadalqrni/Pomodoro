@@ -12,24 +12,22 @@
 
 [👉 Visit the website](https://pomodoro-khaki-seven.vercel.app)
 
-A cozy web app designed to help students stay focused and productive —
-now with accounts and a daily streak system.
+A cozy study app with a Pomodoro timer, accounts, and a daily streak system.
 
 ## 🌙 About
 
 Study With Me is a student productivity website featuring a Pomodoro
-timer, to-do list, and a relaxing lofi study atmosphere with animated
-video backgrounds that change with each timer session.
+timer, to-do list, and a relaxing lofi atmosphere with animated video
+backgrounds that change with each timer session.
 
-Users can create an account, and every day they start a focus session
-they earn a point — so the number tracks days actually studied, not
-just visits.
+Users create an account, and every day they start a focus session they
+earn a point — so the number tracks days actually studied, not just visits.
 
 ## 📄 Pages
 
 - 🏠 **Home** — Welcome page with video background
-- ⏱️ **Timer** — Pomodoro timer with focus, short break, and long break modes
-- ✅ **To-Do List** — Task manager to track your work
+- ⏱️ **Timer** — Focus, short break, and long break modes, with customizable lengths
+- ✅ **To-Do List** — Task manager
 - 👤 **Auth** — Sign up and log in
 - 📩 **Contact** — Get in touch
 
@@ -38,16 +36,26 @@ just visits.
 **Frontend:** HTML5, CSS3, JavaScript
 **Backend:** Node.js, Express, Prisma, PostgreSQL (Neon)
 **Auth:** JWT in httpOnly cookies, bcrypt password hashing
+**Validation:** Joi
 **Deployed on:** Vercel (frontend) + Render (backend)
 
 ## ✨ Features
 
 - Video background that changes with timer state
-- Glass morphism UI design
+- Glass morphism UI, with a customizable accent color
 - User accounts with secure authentication
 - Daily point system — one point per day you study
 - Protected API routes; users only access their own data
-- Responsive layout
+
+## 🏗️ Backend Architecture
+
+The API is built as a layered request pipeline:
+
+- **Validation layer** (Joi) — rejects malformed requests before they reach any controller
+- **Auth middleware** — verifies the JWT and attaches the user id to the request
+- **Rate limiting** — caps login attempts per IP to slow brute-force attempts
+- **Centralized error handling** — controllers throw; one handler decides the
+  response, keeping internal errors out of client responses
 
 ## 🔌 API
 
@@ -63,11 +71,31 @@ just visits.
 
 **Backend**
 
-## note
-
+\`\`\`
 cd backend
 npm install
 npx prisma generate
+npx prisma db push
 npm run dev
+\`\`\`
 
-> 🚧 This project is still in progress...
+Create a `.env` file in `backend/`:
+
+\`\`\`
+DATABASE_URL=
+JWT_SECRET=
+JWT_EXPIRES_IN=7d
+CLIENT_URL=http://localhost:5173
+PORT=5001
+\`\`\`
+
+**Frontend**
+
+\`\`\`
+cd frontend
+npx serve -l 5173
+\`\`\`
+
+## 💡 What I Learned
+
+> Write this yourself — it's the section people actually read.
