@@ -57,6 +57,17 @@
       <p id="starcount"></p>
     </div>
     <button id="openSettings">⚙️</button>
+    <button id="openSounds" title="Ambient sounds">🎵</button>
+    <div id="soundPanel" class="hidden">
+      <div class="sound-item">
+        <button class="sound-btn" id="soundOcean" data-audio="audio/Oceanaudio.mp3" title="Ocean waves">🌊</button>
+        <input type="range" class="sound-volume" id="oceanVolume" min="0" max="100" value="70" />
+      </div>
+      <div class="sound-item">
+        <button class="sound-btn" id="soundRain" data-audio="audio/rainaudio.mp3" title="Rain">🌧️</button>
+        <input type="range" class="sound-volume" id="rainVolume" min="0" max="100" value="70" />
+      </div>
+    </div>
     <!--INSIDE SETTING BUTTON-->
     <div id="overlay" class="hidden">
       <div id="settingsPanel">
@@ -118,6 +129,7 @@
     <!-- 🍅 setting.js must load before timer.js: timer.js calls loadSettings()
          at startup, and script/module tags run in document order -->
     <script src="js/setting.js" defer></script>
+    <script src="js/sound.js" defer></script>
     <script type="module" src="js/timer.js"></script>
     <script type="module" src="js/visitTracker.js"></script>
     <script type="module" src="js/authStatus.js"></script>

@@ -26,23 +26,3 @@ if (!window.updatePoints) window.updatePoints = updatePointsLocal;
 
 // initialize: try fetching from backend (if logged in), else fall back to localStorage
 // Try to fetch points with retries to handle cookie timing after login
-
-async function tryFetchPointsHome() {
-  try {
-    const res = await getPoints();
-    return res.points;
-  } catch (e) {
-    console.log("Not logged in");
-    return null;
-  }
-}
-(async function initPoints() {
-  const pts = await tryFetchPointsHome();
-  if (pts !== null) {
-    updatePointsLocal(pts);
-    return;
-  }
-
-  const savedPoints = localStorage.getItem("pomodoroPoints");
-  if (savedPoints) updatePointsLocal(Number(savedPoints));
-})();

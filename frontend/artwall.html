@@ -73,6 +73,17 @@
       </div>
     </div>
     <button id="openSettings">⚙️</button>
+    <button id="openSounds" title="Ambient sounds">🎵</button>
+    <div id="soundPanel" class="hidden">
+      <div class="sound-item">
+        <button class="sound-btn" id="soundOcean" data-audio="audio/Oceanaudio.mp3" title="Ocean waves">🌊</button>
+        <input type="range" class="sound-volume" id="oceanVolume" min="0" max="100" value="70" />
+      </div>
+      <div class="sound-item">
+        <button class="sound-btn" id="soundRain" data-audio="audio/rainaudio.mp3" title="Rain">🌧️</button>
+        <input type="range" class="sound-volume" id="rainVolume" min="0" max="100" value="70" />
+      </div>
+    </div>
     <div id="overlay" class="hidden">
       <div id="settingsPanel">
         <button id="closeSettings">×</button>
@@ -129,6 +140,7 @@
     </div>
     <script src="js/glassAlert.js"></script>
     <script src="js/setting.js" defer></script>
+    <script src="js/sound.js" defer></script>
     <script src="js/artwall.js"></script>
     <script type="module" src="js/visitTracker.js"></script>
     <script type="module" src="js/authStatus.js"></script>
