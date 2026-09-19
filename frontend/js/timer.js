@@ -22,8 +22,10 @@ let session = "focus";
 startbtn.addEventListener("click", async () => {
   if (timeRunning) return;
   timeRunning = true;
+  let startTime = Date.now();
+  let duration = timeLeft;
   timer = setInterval(() => {
-    if (timeLeft === 0) {
+    if (timeLeft <= 0) {
       clearInterval(timer);
       timeRunning = false;
       if (session === "focus") {
@@ -33,7 +35,7 @@ startbtn.addEventListener("click", async () => {
           session = "long";
           count = 0;
           starcount.textContent = "";
-          playSound(); // 🍅 long break now plays the sound too
+          playSound();
         } else {
           session = "short";
           playSound();
@@ -44,7 +46,10 @@ startbtn.addEventListener("click", async () => {
       switchSession(session);
       return;
     }
-    timeLeft--;
+
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    timeLeft = duration - elapsed;
+
     // time math this create minutes and second
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
@@ -52,7 +57,6 @@ startbtn.addEventListener("click", async () => {
     timerdisplay.textContent = `${minutes}:${seconds}`;
   }, 1000);
 
-  console.log(addpoint);
   try {
     const res = await addpoint();
     if (res && typeof window.updatePoints === "function") {
