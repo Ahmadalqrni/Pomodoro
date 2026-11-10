@@ -43,6 +43,7 @@ const login = catchAsync(async (req, res) => {
 
   // start search
   const user = await prisma.user.findUnique({
+    omit: { password: true },
     where: { email },
   });
 
