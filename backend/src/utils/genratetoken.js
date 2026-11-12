@@ -5,14 +5,31 @@ const generateToken = (userId, res) => {
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || "10m",
   });
-
   const cookie = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-    maxAge: 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 10, // 10 minutes
   };
   res.cookie("jwt", token, cookie);
 };
 
-export default generateToken;
+const refreshToken = (userId) => {
+  const payload = { id: userId };
+  return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
+    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
+  });
+};
+
+const refreshTokenverfiy = (userId) => {
+  return jwt.verify(refreshToken(userId), process.env.JWT_REFRESH_SECRET);
+};
+
+res.cookie("refreshToken", refreshToken(userId), {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+});
+
+export { generateToken, refreshToken, refreshTokenverfiy };

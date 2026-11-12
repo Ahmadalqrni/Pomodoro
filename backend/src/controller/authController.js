@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import prisma from "../config/db.js";
 import ApiError from "../utils/ApiError.js";
 import catchAsync from "../utils/catchAsync.js";
-import generateToken from "../utils/genratetoken.js";
+import { generateToken, refreshToken } from "../utils/genratetoken.js";
 
 // signup
 const signup = catchAsync(async (req, res) => {
@@ -28,7 +28,9 @@ const signup = catchAsync(async (req, res) => {
     },
     omit: { password: true },
   });
+  refreshToken(user.id, res);
   generateToken(user.id, res);
+
   res.status(201).json({
     status: "success",
     data: { user },
@@ -49,16 +51,16 @@ const login = catchAsync(async (req, res) => {
 
   // not exists out edit
   if (!user) {
-    throw new ApiError(409, "Invalid email or password");
+    throw new ApiError(401, "Invalid email or password");
   }
 
   // checking compare password
   const validpassword = await bcrypt.compare(password, user.password);
 
   if (!validpassword) {
-    throw new ApiError(409, "Invalid email or password");
+    throw new ApiError(401, "Invalid email or password");
   }
-
+  refreshToken(user.id, res);
   generateToken(user.id, res);
   res.status(200).json({
     status: "success",

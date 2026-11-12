@@ -28,5 +28,4 @@ const loginValidation = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().custom(passwordCheck).required(),
 });
-
 export { signupValidation, loginValidation };
