@@ -59,13 +59,14 @@ The API is built as a layered request pipeline:
 
 ## 🔌 API
 
-| Method | Route          | Auth | Description         |
-| ------ | -------------- | ---- | ------------------- |
-| POST   | `/auth/signup` | –    | Create an account   |
-| POST   | `/auth/login`  | –    | Log in, sets cookie |
-| POST   | `/auth/logout` | –    | Clear the cookie    |
-| POST   | `/point/visit` | ✓    | Award today's point |
-| GET    | `/point/show`  | ✓    | Get current points  |
+| Method | Route                 | Auth            | Description                    |
+| ------ | --------------------- | --------------- | ------------------------------ |
+| POST   | `/auth/signup`        | –               | Create an account              |
+| POST   | `/auth/login`         | –               | Log in and set auth cookies    |
+| POST   | `/auth/refresh-token` | Refresh cookie  | Issue a new access-token cookie |
+| POST   | `/auth/logout`        | –               | Clear both auth cookies        |
+| POST   | `/point/visit`        | ✓               | Award today's point            |
+| GET    | `/point/show`         | ✓               | Get current points             |
 
 ## 🚀 Running Locally
 
@@ -85,9 +86,18 @@ Create a `.env` file in `backend/`:
 DATABASE_URL=
 JWT_SECRET=
 JWT_EXPIRES_IN=7d
+JWT_REFRESH_SECRET=
+JWT_REFRESH_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:5173
 PORT=5001
 \`\`\`
+
+Set `JWT_REFRESH_SECRET` to a separate, long random secret; do not reuse
+`JWT_SECRET`. Signup and login set an access-token cookie and a longer-lived
+refresh-token cookie. When the access token expires, send a credentialed
+`POST /auth/refresh-token` request to get a new access-token cookie. The refresh
+token itself lasts until its configured expiration or until the browser clears
+it on logout.
 
 **Frontend**
 

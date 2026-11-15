@@ -2,17 +2,7 @@ const userinput = document.getElementById("userinput");
 const AddTask = document.getElementById("Add_Task");
 const Tasklist = document.getElementById("Tasklist");
 let tasks = [];
-/* 
-1- take the value of user input and add it to ul 
 
-2- need to create li and take the value of inputuser and append to ul
-
-3-add the check box and the delet button
-
-4- need to create checkbox and delete button 
-
-
- */
 AddTask.addEventListener("click", () => {
   const li = document.createElement("li");
   const checkbox = document.createElement("input");
@@ -20,9 +10,13 @@ AddTask.addEventListener("click", () => {
   const span = document.createElement("span");
   if (userinput.value === "")
     return showGlassAlert("Enter a task please", "warning");
+  // here we create a task object to store
+  const task = { text: userinput.value, checked: false };
   // delete button
-  deletebtn.addEventListener("click", () => {
+  deletebtn.addEventListener("click", (event) => {
+    event.stopPropagation();
     li.remove();
+    tasks = tasks.filter((t) => t !== task);
     localStorage.setItem("tasks", JSON.stringify(tasks));
   });
   deletebtn.textContent = "🗑️";
@@ -32,19 +26,21 @@ AddTask.addEventListener("click", () => {
 
   li.addEventListener("click", () => {
     checkbox.checked = !checkbox.checked;
+    task.checked = checkbox.checked;
+    // here the stily link to the task is updated based on the checkbox state
     span.style.textDecoration = checkbox.checked ? "line-through" : "none";
     li.classList.toggle("checked");
+
     localStorage.setItem("tasks", JSON.stringify(tasks));
   });
 
   // span
   span.textContent = userinput.value;
-
   li.appendChild(checkbox);
   li.appendChild(span);
   li.appendChild(deletebtn);
   Tasklist.appendChild(li);
-  tasks.push({ text: userinput.value, checked: false });
+  tasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   userinput.value = "";
 });
@@ -79,7 +75,8 @@ function loadTasks() {
       localStorage.setItem("tasks", JSON.stringify(tasks));
     });
 
-    deletebtn.addEventListener("click", () => {
+    deletebtn.addEventListener("click", (event) => {
+      event.stopPropagation();
       li.remove();
       tasks = tasks.filter((t) => t !== task);
       localStorage.setItem("tasks", JSON.stringify(tasks));
