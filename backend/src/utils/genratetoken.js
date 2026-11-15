@@ -30,7 +30,7 @@ const generateToken = (userId, res) => {
 };
 
 const generateRefreshToken = (userId, res) => {
-  const token = jwt.sign({ id: userId }, process.env.JWT_REFRESH_SECRET, {
+  const token = jwt.sign({ id: userId }, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
   });
   setTokenCookie(res, "refreshToken", token);

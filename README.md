@@ -85,19 +85,18 @@ Create a `.env` file in `backend/`:
 \`\`\`
 DATABASE_URL=
 JWT_SECRET=
-JWT_EXPIRES_IN=7d
-JWT_REFRESH_SECRET=
+JWT_EXPIRES_IN=15m
+REFRESH_TOKEN_SECRET=
 JWT_REFRESH_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:5173
 PORT=5001
 \`\`\`
 
-Set `JWT_REFRESH_SECRET` to a separate, long random secret; do not reuse
+Set `REFRESH_TOKEN_SECRET` to a separate, long random secret; do not reuse
 `JWT_SECRET`. Signup and login set an access-token cookie and a longer-lived
-refresh-token cookie. When the access token expires, send a credentialed
-`POST /auth/refresh-token` request to get a new access-token cookie. The refresh
-token itself lasts until its configured expiration or until the browser clears
-it on logout.
+refresh-token cookie. When a points request gets a `401`, the frontend calls
+`POST /auth/refresh-token` once and retries the request. Refresh tokens are
+verified as JWTs and are not stored in the database.
 
 **Frontend**
 

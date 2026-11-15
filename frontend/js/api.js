@@ -1,5 +1,19 @@
 const API =
   window.location.hostname === "localhost" ? "http://localhost:5001" : "/api"; // auth
+
+async function fetchWithRefresh(url, options = {}) {
+  const response = await fetch(url, options);
+  if (response.status !== 401) return response;
+
+  const refreshResponse = await fetch(`${API}/auth/refresh-token`, {
+    method: "POST",
+    credentials: "include",
+  });
+  if (!refreshResponse.ok) return response;
+
+  return fetch(url, options);
+}
+
 async function login(email, password) {
   const res = await fetch(`${API}/auth/login`, {
     method: "POST",
@@ -30,7 +44,7 @@ async function logout() {
 
 // point
 async function addpoint() {
-  const res = await fetch(`${API}/point/visit`, {
+  const res = await fetchWithRefresh(`${API}/point/visit`, {
     method: "POST",
     credentials: "include",
   });
@@ -38,8 +52,7 @@ async function addpoint() {
 }
 
 async function getPoints() {
-  
-  const res = await fetch(`${API}/point/show`, {
+  const res = await fetchWithRefresh(`${API}/point/show`, {
     credentials: "include",
   });
   return res.json();

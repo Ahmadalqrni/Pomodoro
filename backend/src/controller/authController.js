@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import prisma from "../config/db.js";
 import ApiError from "../utils/ApiError.js";
 import catchAsync from "../utils/catchAsync.js";
@@ -7,7 +8,6 @@ import {
   generateRefreshToken,
   generateToken,
 } from "../utils/genratetoken.js";
-import verifyRefreshToken from "../middleware/verifyRefreshToken.js";
 
 // signup
 const signup = catchAsync(async (req, res) => {
@@ -86,20 +86,25 @@ const refresh = catchAsync(async (req, res) => {
     throw new ApiError(401, "Unauthorized. No refresh token provided.");
   }
 
-  const decoded = verifyRefreshToken(token);
-  if (!decoded || typeof decoded === "string" || typeof decoded.id !== "string") {
+  if (!process.env.REFRESH_TOKEN_SECRET) {
+    throw new Error("REFRESH_TOKEN_SECRET is not configured");
+  }
+
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
+  } catch (error) {
+    if (error instanceof jwt.JsonWebTokenError) {
+      throw new ApiError(401, "Invalid or expired refresh token");
+    }
+    throw error;
+  }
+
+  if (typeof decoded === "string" || typeof decoded.id !== "string") {
     throw new ApiError(401, "Invalid or expired refresh token");
   }
 
-  const user = await prisma.user.findUnique({
-    where: { id: decoded.id },
-    select: { id: true },
-  });
-  if (!user) {
-    throw new ApiError(401, "Invalid or expired refresh token");
-  }
-
-  generateToken(user.id, res);
+  generateToken(decoded.id, res);
   res.status(200).json({ status: "success" });
 });
 
