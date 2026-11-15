@@ -1,35 +1,39 @@
 import jwt from "jsonwebtoken";
 
-const generateToken = (userId, res) => {
-  const payload = { id: userId };
-  const token = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN || "10m",
-  });
-  const cookie = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-    maxAge: 1000 * 60 * 10, // 10 minutes
-  };
-  res.cookie("jwt", token, cookie);
-};
-
-const refreshToken = (userId) => {
-  const payload = { id: userId };
-  return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
-  });
-};
-
-const refreshTokenverfiy = (userId) => {
-  return jwt.verify(refreshToken(userId), process.env.JWT_REFRESH_SECRET);
-};
-
-res.cookie("refreshToken", refreshToken(userId), {
+const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
   sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-  maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-});
+};
 
-export { generateToken, refreshToken, refreshTokenverfiy };
+const setTokenCookie = (res, name, token) => {
+  const decoded = jwt.decode(token);
+  if (
+    !decoded ||
+    typeof decoded === "string" ||
+    typeof decoded.exp !== "number"
+  ) {
+    throw new Error(`Could not determine ${name} expiration`);
+  }
+
+  res.cookie(name, token, {
+    ...cookieOptions,
+    maxAge: Math.max(0, decoded.exp * 1000 - Date.now()),
+  });
+};
+
+const generateToken = (userId, res) => {
+  const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || "10m",
+  });
+  setTokenCookie(res, "jwt", token);
+};
+
+const generateRefreshToken = (userId, res) => {
+  const token = jwt.sign({ id: userId }, process.env.JWT_REFRESH_SECRET, {
+    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
+  });
+  setTokenCookie(res, "refreshToken", token);
+};
+
+export { generateToken, generateRefreshToken, cookieOptions };

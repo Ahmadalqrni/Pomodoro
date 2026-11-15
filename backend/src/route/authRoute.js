@@ -4,9 +4,13 @@ import {
   signupValidation,
   loginValidation,
 } from "../Validation/authValidation.js";
-import { signup, login, logout } from "../controller/authController.js";
+import {
+  signup,
+  login,
+  logout,
+  refresh,
+} from "../controller/authController.js";
 import rateLimit from "express-rate-limit";
-import { refreshToken } from "../utils/genratetoken.js";
 
 const routes = express.Router();
 
@@ -19,6 +23,6 @@ const authLimiter = rateLimit({
 routes.post("/signup", authLimiter, validate(signupValidation), signup);
 routes.post("/login", authLimiter, validate(loginValidation), login);
 routes.post("/logout", logout);
-routes.post("/refresh-token", refreshToken);
+routes.post("/refresh-token", authLimiter, refresh);
 
 export default routes;
